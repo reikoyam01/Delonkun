@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<Button
-		android:id="@+id/btnRecognize"
-		android:layout_height="wrap_content"
-		android:text="Voice Recognition"
-		android:layout_width="fill_parent"></Button>
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/txtStatus"
-		android:text="Delonkun" android:textSize="20dip"></TextView>
-	<Button android:id="@+id/btnStop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stop"></Button>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnRecognize"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:text="Voice Recognition" >
+
+    </Button>
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:text="Delonkun"
+        android:textSize="20dip" >
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="Stop" >
+    </Button>
+
 </LinearLayout>
