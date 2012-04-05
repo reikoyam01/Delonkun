@@ -44,14 +44,12 @@ public class DelonKun extends Activity {
 					"Delon-kun Voice Recognition");
 			startActivityForResult(intent, REQUEST_CODE);
 
-			int a = 1;
-
 		} catch (ActivityNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void pushTone(int i, int mode) {
+	public void pushTone(int i, int mode, boolean disp) {
 		int t = 150;
 		final TextView txtStatus = (TextView)findViewById(R.id.txtStatus);
 
@@ -60,8 +58,10 @@ public class DelonKun extends Activity {
 			t += 500;
 
 		// Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
-		txtStatus.setText(String.format("mode %d dir %d time %d",mode, i, t));
-/* 動作コマンド鳴動～停止 */
+		if(disp){
+			txtStatus.setText(String.format("mode %d dir %d time %d",mode, i, t));
+		}
+		/* 動作コマンド鳴動～停止 */
 		toneGenerator.startTone(i);
 		try {
 			Thread.sleep(150);
@@ -91,11 +91,11 @@ public class DelonKun extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		final TextView txtStatus = (TextView)findViewById(R.id.txtStatus);
+		//final TextView txtStatus = (TextView)findViewById(R.id.txtStatus);
 		toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM,
 			ToneGenerator.MAX_VOLUME);
 
-		pushTone(TONE_STOP, g_mode);
+		pushTone(TONE_STOP, g_mode, false);
 
 		Button btn1 = (Button) findViewById(R.id.btnRecognize);
 		btn1.setOnClickListener(new OnClickListener() {
@@ -107,7 +107,7 @@ public class DelonKun extends Activity {
 		Button btnStop = (Button) findViewById(R.id.btnStop);
 		btnStop.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				pushTone(TONE_STOP, g_mode);
+				pushTone(TONE_STOP, g_mode, false);
 			}
 		});
 
@@ -136,35 +136,35 @@ public class DelonKun extends Activity {
 			// DIRECTION
 			// 右
 			if (resultsString.contains("右"))
-				pushTone(TONE_RIGHT, localmode);
+				pushTone(TONE_RIGHT, localmode, true);
 			else if (resultsString.contains("みぎ"))
-				pushTone(TONE_RIGHT, localmode);
+				pushTone(TONE_RIGHT, localmode, true);
 			else if (resultsString.contains("ミニ"))
-				pushTone(TONE_RIGHT, localmode);
+				pushTone(TONE_RIGHT, localmode, true);
 			else if (resultsString.contains("虹"))
-				pushTone(TONE_RIGHT, localmode);
+				pushTone(TONE_RIGHT, localmode, true);
 			// 左
 			if (resultsString.contains("左"))
-				pushTone(TONE_LEFT, localmode);
+				pushTone(TONE_LEFT, localmode, true);
 			else if (resultsString.contains("ひだり"))
-				pushTone(TONE_LEFT, localmode);
+				pushTone(TONE_LEFT, localmode, true);
 			// 前
 			if (resultsString.contains("前"))
-				pushTone(TONE_FORWARD, localmode);
+				pushTone(TONE_FORWARD, localmode, true);
 			else if (resultsString.contains("前進"))
-				pushTone(TONE_FORWARD, localmode);
+				pushTone(TONE_FORWARD, localmode, true);
 			else if (resultsString.contains("全身"))
-				pushTone(TONE_FORWARD, localmode);
+				pushTone(TONE_FORWARD, localmode, true);
 			// 最終兵器
 			if (resultsString.contains("ソフトピア"))
-				pushTone(TONE_FORWARD, MODE_MAX);
+				pushTone(TONE_FORWARD, MODE_MAX, true);
 			else if (resultsString.contains("ラストスパート"))
-				pushTone(TONE_FORWARD, MODE_MAX);
+				pushTone(TONE_FORWARD, MODE_MAX, true);
 			// 停止
 			if (resultsString.contains("停止"))
-				pushTone(TONE_STOP, localmode);
+				pushTone(TONE_STOP, localmode, true);
 			else if (resultsString.contains("天使"))
-				pushTone(TONE_STOP, localmode);
+				pushTone(TONE_STOP, localmode, true);
 
 			//暴走防止用に少し待って再度停止を送る
 			try {
@@ -172,7 +172,7 @@ public class DelonKun extends Activity {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			pushTone(TONE_STOP, g_mode);
+			pushTone(TONE_STOP, g_mode, false);
 			
 			//音声認識有効
 			activateRecognize();
