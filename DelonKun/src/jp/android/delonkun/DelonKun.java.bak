@@ -82,20 +82,7 @@ public class DelonKun extends Activity {
 			e.printStackTrace();
 		}
 		toneGenerator.stopTone();
-/*
-		toneGenerator.startTone(ToneGenerator.TONE_DTMF_4);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		toneGenerator.stopTone();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-*/
+
 	}
 
 	@Override
@@ -173,10 +160,19 @@ public class DelonKun extends Activity {
 			else if (resultsString.contains("天使"))
 				pushTone(TONE_STOP, localmode);
 
+			//暴走防止用に少し待って再度停止を送る
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			pushTone(TONE_STOP, g_mode);
+			
+			//音声認識有効
 			activateRecognize();
 		} else {
-
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+
 	}
 }

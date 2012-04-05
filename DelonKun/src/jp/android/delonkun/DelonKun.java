@@ -23,6 +23,7 @@ public class DelonKun extends Activity {
 	final int MODE_LOW = 0;
 	final int MODE_MID = 1;
 	final int MODE_HIGH = 2;
+	final int MODE_MAX = 10;
 
 	final int TONE_RIGHT = ToneGenerator.TONE_DTMF_2;	//ホントは1
 	final int TONE_LEFT = ToneGenerator.TONE_DTMF_1;	//ホントは2
@@ -56,7 +57,7 @@ public class DelonKun extends Activity {
 
 		t += mode * 150;
 		if (i == ToneGenerator.TONE_DTMF_3)
-			t += 300;
+			t += 500;
 
 		// Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
 		txtStatus.setText(String.format("mode %d dir %d time %d",mode, i, t));
@@ -154,6 +155,11 @@ public class DelonKun extends Activity {
 				pushTone(TONE_FORWARD, localmode);
 			else if (resultsString.contains("全身"))
 				pushTone(TONE_FORWARD, localmode);
+			// 最終兵器
+			if (resultsString.contains("ソフトピア"))
+				pushTone(TONE_FORWARD, MODE_MAX);
+			else if (resultsString.contains("ラストスパート"))
+				pushTone(TONE_FORWARD, MODE_MAX);
 			// 停止
 			if (resultsString.contains("停止"))
 				pushTone(TONE_STOP, localmode);
