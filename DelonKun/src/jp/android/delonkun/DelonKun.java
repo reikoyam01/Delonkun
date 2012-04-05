@@ -25,8 +25,8 @@ public class DelonKun extends Activity {
 	final int MODE_HIGH = 2;
 	final int MODE_MAX = 10;
 
-	final int TONE_RIGHT = ToneGenerator.TONE_DTMF_2;	//ƒzƒ“ƒg‚Í1
-	final int TONE_LEFT = ToneGenerator.TONE_DTMF_1;	//ƒzƒ“ƒg‚Í2
+	final int TONE_RIGHT = ToneGenerator.TONE_DTMF_2;	//ãƒ›ãƒ³ãƒˆã¯1
+	final int TONE_LEFT = ToneGenerator.TONE_DTMF_1;	//ãƒ›ãƒ³ãƒˆã¯2
 	final int TONE_FORWARD = ToneGenerator.TONE_DTMF_3;
 	final int TONE_STOP = ToneGenerator.TONE_DTMF_4;
 
@@ -61,7 +61,7 @@ public class DelonKun extends Activity {
 
 		// Toast.makeText(this, String.valueOf(i), Toast.LENGTH_LONG).show();
 		txtStatus.setText(String.format("mode %d dir %d time %d",mode, i, t));
-/* “®ìƒRƒ}ƒ“ƒh–Â“®`’â~ */
+/* å‹•ä½œã‚³ãƒãƒ³ãƒ‰é³´å‹•ï½åœæ­¢ */
 		toneGenerator.startTone(i);
 		try {
 			Thread.sleep(150);
@@ -69,13 +69,13 @@ public class DelonKun extends Activity {
 			e.printStackTrace();
 		}
 		toneGenerator.stopTone();
-/* ‘Ò‚Â */
+/* å¾…ã¤ */
 		try {
 			Thread.sleep(t);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-/* ’â~ƒRƒ}ƒ“ƒh–Â“®`’â~ */
+/* åœæ­¢ã‚³ãƒãƒ³ãƒ‰é³´å‹•ï½åœæ­¢ */
 		toneGenerator.startTone(ToneGenerator.TONE_DTMF_4);
 		try {
 			Thread.sleep(150);
@@ -128,45 +128,45 @@ public class DelonKun extends Activity {
 
 			Toast.makeText(this, resultsString, Toast.LENGTH_LONG).show();
 			// MODE
-			if (resultsString.contains("­‚µ"))
+			if (resultsString.contains("å°‘ã—"))
 				localmode = MODE_LOW;
-			else if (resultsString.contains("‚½‚­‚³‚ñ"))
+			else if (resultsString.contains("ãŸãã•ã‚“"))
 				localmode = MODE_HIGH;
 
 			// DIRECTION
-			// ‰E
-			if (resultsString.contains("‰E"))
+			// å³
+			if (resultsString.contains("å³"))
 				pushTone(TONE_RIGHT, localmode);
-			else if (resultsString.contains("‚İ‚¬"))
+			else if (resultsString.contains("ã¿ã"))
 				pushTone(TONE_RIGHT, localmode);
-			else if (resultsString.contains("ƒ~ƒj"))
+			else if (resultsString.contains("ãƒŸãƒ‹"))
 				pushTone(TONE_RIGHT, localmode);
-			else if (resultsString.contains("“ø"))
+			else if (resultsString.contains("è™¹"))
 				pushTone(TONE_RIGHT, localmode);
-			// ¶
-			if (resultsString.contains("¶"))
+			// å·¦
+			if (resultsString.contains("å·¦"))
 				pushTone(TONE_LEFT, localmode);
-			else if (resultsString.contains("‚Ğ‚¾‚è"))
+			else if (resultsString.contains("ã²ã ã‚Š"))
 				pushTone(TONE_LEFT, localmode);
-			// ‘O
-			if (resultsString.contains("‘O"))
+			// å‰
+			if (resultsString.contains("å‰"))
 				pushTone(TONE_FORWARD, localmode);
-			else if (resultsString.contains("‘Oi"))
+			else if (resultsString.contains("å‰é€²"))
 				pushTone(TONE_FORWARD, localmode);
-			else if (resultsString.contains("‘Sg"))
+			else if (resultsString.contains("å…¨èº«"))
 				pushTone(TONE_FORWARD, localmode);
-			// ÅI•ºŠí
-			if (resultsString.contains("ƒ\ƒtƒgƒsƒA"))
+			// æœ€çµ‚å…µå™¨
+			if (resultsString.contains("ã‚½ãƒ•ãƒˆãƒ”ã‚¢"))
 				pushTone(TONE_FORWARD, MODE_MAX);
-			else if (resultsString.contains("ƒ‰ƒXƒgƒXƒp[ƒg"))
+			else if (resultsString.contains("ãƒ©ã‚¹ãƒˆã‚¹ãƒ‘ãƒ¼ãƒˆ"))
 				pushTone(TONE_FORWARD, MODE_MAX);
-			// ’â~
-			if (resultsString.contains("’â~"))
+			// åœæ­¢
+			if (resultsString.contains("åœæ­¢"))
 				pushTone(TONE_STOP, localmode);
-			else if (resultsString.contains("“Vg"))
+			else if (resultsString.contains("å¤©ä½¿"))
 				pushTone(TONE_STOP, localmode);
 
-			//–\‘––h~—p‚É­‚µ‘Ò‚Á‚ÄÄ“x’â~‚ğ‘—‚é
+			//æš´èµ°é˜²æ­¢ç”¨ã«å°‘ã—å¾…ã£ã¦å†åº¦åœæ­¢ã‚’é€ã‚‹
 			try {
 				Thread.sleep(150);
 			} catch (InterruptedException e) {
@@ -174,7 +174,7 @@ public class DelonKun extends Activity {
 			}
 			pushTone(TONE_STOP, g_mode);
 			
-			//‰¹º”F¯—LŒø
+			//éŸ³å£°èªè­˜æœ‰åŠ¹
 			activateRecognize();
 		} else {
 		}
